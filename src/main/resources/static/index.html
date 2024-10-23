@@ -1,0 +1,23 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spring SSE Demo Conde</title>
+    </head>
+    <body>
+        <h1>Juan Manuel Conde Aldana - Server-Sent Events (SSE) with Spring</h1>
+        <div id="sse"></div>
+        <script>
+            const eventSource = new EventSource('/sse');
+            eventSource.onmessage = (event) => {
+                const div = document.getElementById('sse');
+                div.textContent = `Event Received: ${event.data}`;
+            };
+
+            eventSource.onerror = (error) => {
+                console.error('EventSource failed:', error);
+                eventSource.close();
+            };
+        </script>
+    </body>
+
+</html>
